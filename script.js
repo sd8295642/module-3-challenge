@@ -3,17 +3,69 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
 // Collect employee data
 const collectEmployees = function() {
-  // TODO: Get user input to create and return an array of employee objects
-}
+  const employees = [];
+
+  const employee = {
+    firstName: "",
+    lastName: "",
+    salary: 0
+  };
+
+  employee.firstName = prompt("Employee's first name: ")
+  employee.lastName = prompt("Employee's last name: ")
+  employee.salary = prompt("Employee's salary: ")
+
+  if (isNaN(employee.salary) || employee.salary < 0) {
+    employee.salary = 0;
+  }
+  else {
+    employee.salary = parseInt(employee.salary);
+  }
+
+  employees.push(employee);
+
+  while (confirm("Would you like to add another employee?")) {
+    const employee = {
+      firstName: "",
+      lastName: "",
+      salary: 0
+    };
+
+    employee.firstName = prompt("Employee's first name: ")
+    employee.lastName = prompt("Employee's last name: ")
+    employee.salary = prompt("Employee's salary: ")
+
+    if (isNaN(employee.salary) || employee.salary < 0) {
+      employee.salary = 0;
+    }
+    else {
+      employee.salary = parseInt(employee.salary);
+    }
+  
+    employees.push(employee);
+  };
+  return employees;
+};
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
-  // TODO: Calculate and display the average salary
-}
+  let sum = 0;
+  let count = 0;
+
+  for (let i = 0; i < employeesArray.length; i++) {
+    let employeeSalaryValue = parseInt(employeesArray[i].salary);
+    sum += employeeSalaryValue;
+    count ++;
+  };
+  return console.log(`Average employee salary is: ${sum/count}`);
+};
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
-  // TODO: Select and display a random employee
+  let r = Math.floor(Math.random() * employeesArray.length);
+  let randomEmployee = employeesArray[r].firstName + " " + employeesArray[r].lastName;
+
+  return console.log(`Congratulations, ${randomEmployee}, you have randomly won`);
 }
 
 /*
